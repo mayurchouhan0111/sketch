@@ -1,0 +1,89 @@
+{
+  "screen_name": "HomeScreen",
+  "platforms": ["web", "mobile", "tablet"],
+  "storage_type": "local_only",
+  "components": [
+    {
+      "type": "Scaffold",
+      "children": [
+        {
+          "type": "AppBar",
+          "props": {
+            "title": "Sketch UI Generator",
+            "elevation": 0
+          }
+        },
+        {
+          "type": "Center",
+          "children": [
+            {
+              "type": "Column",
+              "props": {
+                "mainAxisAlignment": "center"
+              },
+              "children": [
+                {
+                  "type": "Icon",
+                  "props": {
+                    "icon": "auto_awesome",
+                    "size": 64,
+                    "color": "amber"
+                  },
+                  "animations": [
+                    {
+                      "type": "scale",
+                      "duration": 600,
+                      "curve": "easeOutBack"
+                    },
+                    {
+                      "type": "shimmer",
+                      "delay": 300,
+                      "duration": 1200
+                    }
+                  ]
+                },
+                {
+                  "type": "SizedBox",
+                  "props": { "height": 24 }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "text": "Welcome to Sketch",
+                    "style": "displayMedium"
+                  },
+                  "animations": [
+                    {
+                      "type": "fade",
+                      "duration": 500
+                    },
+                    {
+                      "type": "slideY",
+                      "begin": 0.2,
+                      "end": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animations": {
+    "page_load": "fade-in + slide-up (default)",
+    "stagger_delay": 100
+  },
+  "responsive_rules": {
+    "mobile": {
+      "layout": "vertical_stack",
+      "padding": 16
+    },
+    "web": {
+      "layout": "centered_max_width_800",
+      "padding": 32,
+      "hover_effects": true
+    }
+  }
+}

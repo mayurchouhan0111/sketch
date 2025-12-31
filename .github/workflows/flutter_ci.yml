@@ -1,0 +1,55 @@
+name: Flutter CI
+
+# This workflow triggers on pushes to the main branch and every pull request
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Checkout the code
+      - uses: actions/checkout@v4
+
+      # 2. Set up Java (required for Android build)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Set up Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          # You can specify a version e.g., '3.19.0' or leave it to get the latest stable
+
+      # 4. Install Dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 5. Check for formatting issues
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # 6. Analyze code (Linting)
+      - name: Analyze code
+        run: flutter analyze
+
+      # 7. Run Tests
+      - name: Run tests
+        run: flutter test
+
+      # 8. Build Android APK (Ensures the app actually compiles)
+      - name: Build APK
+        run: flutter build apk --release
+        
+      # 9. Upload APK as an artifact (so you can download it from GitHub)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
