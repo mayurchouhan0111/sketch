@@ -30,26 +30,28 @@ class DashboardLayout extends ConsumerWidget {
               child: Lottie.asset(
                 'assets/animations/Stars.json',
                 fit: BoxFit.cover,
-                frameRate: FrameRate.composition, 
+                frameRate: FrameRate.composition,
                 renderCache: RenderCache.drawingCommands,
               ),
             ),
           ),
-          
+
           // SEMI-TRANSPARENT OVERLAY
           Container(color: Colors.black.withOpacity(0.2)),
 
           // MAIN LAYOUT (Sidebar + Content)
           Row(
             children: [
-              if (isDesktop) 
-                const SidebarComponent(),
-              
+              if (isDesktop) const SidebarComponent(),
+
               Expanded(
-                child: SafeArea( 
-                  bottom: false, // Allow content to go behind floating nav on bottom
+                child: SafeArea(
+                  bottom:
+                      false, // Allow content to go behind floating nav on bottom
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: isDesktop ? 0 : 100), // clear nav bar on mobile
+                    padding: EdgeInsets.only(
+                      bottom: isDesktop ? 0 : 100,
+                    ), // clear nav bar on mobile
                     child: _buildBody(ref),
                   ),
                 ),
@@ -61,10 +63,10 @@ class DashboardLayout extends ConsumerWidget {
           if (!isDesktop)
             Positioned(
               bottom: 48, // Increased bottom padding per request
-              left: 16,   
+              left: 16,
               right: 16,
               child: _buildFloatingNavBar(ref),
-            )
+            ),
         ],
       ),
     );
@@ -96,32 +98,67 @@ class DashboardLayout extends ConsumerWidget {
             color: Colors.black.withOpacity(0.5),
             blurRadius: 20,
             offset: const Offset(0, 10),
-          )
-        ]
+          ),
+        ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildPillItem(ref, selectedTab, DashboardTab.dashboard, "Home", "https://api.iconify.design/solar:home-smile-bold.svg"),
-          _buildPillItem(ref, selectedTab, DashboardTab.explore, "Explore", "https://api.iconify.design/solar:compass-bold.svg"),
-          _buildPillItem(ref, selectedTab, DashboardTab.library, "Library", "https://api.iconify.design/solar:folder-with-files-bold.svg"),
-          _buildPillItem(ref, selectedTab, DashboardTab.settings, "Settings", "https://api.iconify.design/solar:settings-bold.svg"),
+          _buildPillItem(
+            ref,
+            selectedTab,
+            DashboardTab.dashboard,
+            "Home",
+            "https://api.iconify.design/solar:home-smile-bold.svg",
+          ),
+          _buildPillItem(
+            ref,
+            selectedTab,
+            DashboardTab.explore,
+            "Explore",
+            "https://api.iconify.design/solar:compass-bold.svg",
+          ),
+          _buildPillItem(
+            ref,
+            selectedTab,
+            DashboardTab.library,
+            "Library",
+            "https://api.iconify.design/solar:folder-with-files-bold.svg",
+          ),
+          _buildPillItem(
+            ref,
+            selectedTab,
+            DashboardTab.settings,
+            "Settings",
+            "https://api.iconify.design/solar:settings-bold.svg",
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildPillItem(WidgetRef ref, DashboardTab current, DashboardTab tab, String label, String iconUrl) {
+  Widget _buildPillItem(
+    WidgetRef ref,
+    DashboardTab current,
+    DashboardTab tab,
+    String label,
+    String iconUrl,
+  ) {
     final isSelected = current == tab;
     return GestureDetector(
       onTap: () => ref.read(sidebarSelectionProvider.notifier).state = tab,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOutQuint,
-        padding: EdgeInsets.symmetric(horizontal: isSelected ? 16 : 12, vertical: 10),
+        padding: EdgeInsets.symmetric(
+          horizontal: isSelected ? 16 : 12,
+          vertical: 10,
+        ),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.white.withOpacity(0.1) : Colors.transparent, // Active pill background
+          color: isSelected
+              ? Colors.white.withOpacity(0.1)
+              : Colors.transparent, // Active pill background
           borderRadius: BorderRadius.circular(100),
         ),
         child: Row(
@@ -133,32 +170,36 @@ class DashboardLayout extends ConsumerWidget {
               width: 20,
               height: 20,
               colorFilter: ColorFilter.mode(
-                isSelected ? Colors.white : Colors.white38, 
-                BlendMode.srcIn
+                isSelected ? Colors.white : Colors.white38,
+                BlendMode.srcIn,
               ),
-              placeholderBuilder: (context) => Icon(Icons.circle, size: 20, color: Colors.white.withOpacity(0.1)),
+              placeholderBuilder: (context) => Icon(
+                Icons.circle,
+                size: 20,
+                color: Colors.white.withOpacity(0.1),
+              ),
             ),
-            
+
             // Expand Text if selected
             AnimatedSize(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOutQuint,
-              child: isSelected 
-                ? Row(
-                    children: [
-                      const SizedBox(width: 8),
-                      Text(
-                        label,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
+              child: isSelected
+                  ? Row(
+                      children: [
+                        const SizedBox(width: 8),
+                        Text(
+                          label,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                : const SizedBox.shrink(),
-            )
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+            ),
           ],
         ),
       ),

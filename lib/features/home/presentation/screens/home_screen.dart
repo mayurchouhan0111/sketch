@@ -8,9 +8,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sketch UI Generator"),
-      ),
+      appBar: AppBar(title: const Text("Sketch UI Generator")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -19,17 +19,51 @@ class MockCryptoDashboard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Assets", style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text("See All", style: GoogleFonts.inter(color: Colors.indigoAccent, fontSize: 14)),
+                  Text(
+                    "Assets",
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "See All",
+                    style: GoogleFonts.inter(
+                      color: Colors.indigoAccent,
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
               Expanded(
                 child: ListView(
                   children: [
-                    _buildAssetTile("Bitcoin", "BTC", "\$64,321.00", "+2.5%", Icons.currency_bitcoin, Colors.orange),
-                    _buildAssetTile("Ethereum", "ETH", "\$3,421.12", "-1.2%", Icons.auto_awesome, Colors.blue),
-                    _buildAssetTile("Solana", "SOL", "\$145.67", "+5.8%", Icons.wb_sunny, Colors.purple),
+                    _buildAssetTile(
+                      "Bitcoin",
+                      "BTC",
+                      "\$64,321.00",
+                      "+2.5%",
+                      Icons.currency_bitcoin,
+                      Colors.orange,
+                    ),
+                    _buildAssetTile(
+                      "Ethereum",
+                      "ETH",
+                      "\$3,421.12",
+                      "-1.2%",
+                      Icons.auto_awesome,
+                      Colors.blue,
+                    ),
+                    _buildAssetTile(
+                      "Solana",
+                      "SOL",
+                      "\$145.67",
+                      "+5.8%",
+                      Icons.wb_sunny,
+                      Colors.purple,
+                    ),
                   ],
                 ),
               ),
@@ -51,9 +85,19 @@ class MockCryptoDashboard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Total Balance", style: GoogleFonts.inter(color: Colors.white70, fontSize: 14)),
+          Text(
+            "Total Balance",
+            style: GoogleFonts.inter(color: Colors.white70, fontSize: 14),
+          ),
           const SizedBox(height: 8),
-          Text("\$12,450.00", style: GoogleFonts.inter(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+          Text(
+            "\$12,450.00",
+            style: GoogleFonts.inter(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 24),
           Row(
             children: [
@@ -61,7 +105,7 @@ class MockCryptoDashboard extends StatelessWidget {
               const SizedBox(width: 12),
               _buildActionButton(Icons.arrow_outward, "Withdraw"),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -78,13 +122,26 @@ class MockCryptoDashboard extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.white, size: 16),
           const SizedBox(width: 8),
-          Text(label, style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w500)),
+          Text(
+            label,
+            style: GoogleFonts.inter(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildAssetTile(String name, String symbol, String price, String change, IconData icon, Color iconColor) {
+  Widget _buildAssetTile(
+    String name,
+    String symbol,
+    String price,
+    String change,
+    IconData icon,
+    Color iconColor,
+  ) {
     final bool isPositive = change.startsWith('+');
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -96,17 +153,50 @@ class MockCryptoDashboard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(backgroundColor: iconColor.withOpacity(0.1), child: Icon(icon, color: iconColor)),
+          CircleAvatar(
+            backgroundColor: iconColor.withOpacity(0.1),
+            child: Icon(icon, color: iconColor),
+          ),
           const SizedBox(width: 12),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(name, style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
-            Text(symbol, style: GoogleFonts.inter(color: const Color(0xFFa1a1aa), fontSize: 12)),
-          ]),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                symbol,
+                style: GoogleFonts.inter(
+                  color: const Color(0xFFa1a1aa),
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
           const Spacer(),
-          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            Text(price, style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
-            Text(change, style: GoogleFonts.inter(color: isPositive ? Colors.green : Colors.red, fontSize: 12)),
-          ]),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                price,
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                change,
+                style: GoogleFonts.inter(
+                  color: isPositive ? Colors.green : Colors.red,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

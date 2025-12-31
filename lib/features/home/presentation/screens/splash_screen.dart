@@ -11,7 +11,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           children: [
             // Center Lottie Animation
             SizedBox(
-              width: 500, 
+              width: 500,
               height: 500,
               child: Lottie.asset(
                 'assets/animations/splash.json',
@@ -46,45 +47,57 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                   _controller
                     ..duration = composition.duration
                     ..forward().then((value) {
-                       // Navigate after animation completes + small buffer
-                       Future.delayed(const Duration(milliseconds: 500), () {
-                         if (mounted) context.go('/');
-                       });
+                      // Navigate after animation completes + small buffer
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        if (mounted) context.go('/');
+                      });
                     });
                 },
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error_outline, color: Colors.red, size: 50);
+                  return const Icon(
+                    Icons.error_outline,
+                    color: Colors.red,
+                    size: 50,
+                  );
                 },
                 fit: BoxFit.contain,
               ),
             ),
-            
+
             const SizedBox(height: 24),
 
             // App Name with Premium Fade-In
             Text(
-              "Sketch AI",
-              style: GoogleFonts.spaceGrotesk(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                letterSpacing: -1.0,
+                  "Sketch AI",
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: -1.0,
+                  ),
+                )
+                .animate()
+                .fadeIn(
+                  duration: 800.ms,
+                  delay: 1000.ms,
+                ) // Delay text to appear slightly after animation starts
+                .moveY(
+                  begin: 10,
+                  end: 0,
+                  duration: 600.ms,
+                  curve: Curves.easeOut,
+                ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              "Design Freedom",
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: Colors.white38,
+                letterSpacing: 2.0,
               ),
-            ).animate()
-             .fadeIn(duration: 800.ms, delay: 1000.ms) // Delay text to appear slightly after animation starts
-             .moveY(begin: 10, end: 0, duration: 600.ms, curve: Curves.easeOut),
-             
-             const SizedBox(height: 8),
-             
-             Text(
-               "Design Freedom",
-               style: GoogleFonts.inter(
-                 fontSize: 14,
-                 color: Colors.white38,
-                 letterSpacing: 2.0
-               ),
-             ).animate()
-              .fadeIn(duration: 800.ms, delay: 1500.ms)
+            ).animate().fadeIn(duration: 800.ms, delay: 1500.ms),
           ],
         ),
       ),

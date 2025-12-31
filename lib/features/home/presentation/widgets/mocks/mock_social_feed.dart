@@ -10,12 +10,19 @@ class MockSocialFeed extends StatelessWidget {
       backgroundColor: const Color(0xFF09090b),
       appBar: AppBar(
         backgroundColor: const Color(0xFF09090b),
-        title: Text("Feed", style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(
+          "Feed",
+          style: GoogleFonts.inter(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: false,
       ),
       body: ListView.separated(
         itemCount: 10,
-        separatorBuilder: (context, index) => const Divider(color: Color(0xFF27272a), height: 1),
+        separatorBuilder: (context, index) =>
+            const Divider(color: Color(0xFF27272a), height: 1),
         itemBuilder: (context, index) => _buildPost(),
       ),
     );
@@ -29,9 +36,18 @@ class MockSocialFeed extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircleAvatar(backgroundColor: Color(0xFF27272a), radius: 18),
+              const CircleAvatar(
+                backgroundColor: Color(0xFF27272a),
+                radius: 18,
+              ),
               const SizedBox(width: 12),
-              Text("shadcn", style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
+              Text(
+                "shadcn",
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const Spacer(),
               const Icon(Icons.more_horiz, color: Color(0xFFa1a1aa)),
             ],
@@ -43,7 +59,9 @@ class MockSocialFeed extends StatelessWidget {
               color: const Color(0xFF18181b),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Center(child: Icon(Icons.image, color: Color(0xFF27272a), size: 64)),
+            child: const Center(
+              child: Icon(Icons.image, color: Color(0xFF27272a), size: 64),
+            ),
           ),
           const SizedBox(height: 12),
           Row(
@@ -62,8 +80,14 @@ class MockSocialFeed extends StatelessWidget {
             text: TextSpan(
               style: GoogleFonts.inter(color: Colors.white),
               children: [
-                const TextSpan(text: "shadcn ", style: TextStyle(fontWeight: FontWeight.bold)),
-                const TextSpan(text: "Beautifully designed components that you can copy and paste into your apps."),
+                const TextSpan(
+                  text: "shadcn ",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const TextSpan(
+                  text:
+                      "Beautifully designed components that you can copy and paste into your apps.",
+                ),
               ],
             ),
           ),

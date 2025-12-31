@@ -5,7 +5,7 @@ class GenerationRepository {
   Future<List<GenerationItem>> getRecentGenerations() async {
     // Simulate network/db delay
     await Future.delayed(const Duration(milliseconds: 400));
-    
+
     return [
       GenerationItem(
         id: '1',
@@ -35,7 +35,7 @@ class GenerationRepository {
         timestamp: DateTime.now().subtract(const Duration(days: 3)),
         thumbnailColor: const Color(0xFFFFB74D),
       ),
-       GenerationItem(
+      GenerationItem(
         id: '5',
         title: 'Social Media Feed',
         type: 'App',

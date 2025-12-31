@@ -20,7 +20,7 @@ class SidebarComponent extends ConsumerWidget {
         color: Colors.black.withOpacity(0.3), // Glassmorphic Transparent
         border: Border(
           right: BorderSide(
-            color: Color(0xFF27272a).withOpacity(0.5), 
+            color: Color(0xFF27272a).withOpacity(0.5),
             width: 1,
           ),
         ),
@@ -33,7 +33,11 @@ class SidebarComponent extends ConsumerWidget {
             padding: const EdgeInsets.all(24.0),
             child: Row(
               children: [
-                const Icon(Icons.auto_awesome_mosaic, color: Colors.indigoAccent, size: 28)
+                const Icon(
+                      Icons.auto_awesome_mosaic,
+                      color: Colors.indigoAccent,
+                      size: 28,
+                    )
                     .animate(onPlay: (c) => c.repeat())
                     .shimmer(duration: 2.seconds, delay: 1.seconds),
                 const SizedBox(width: 12),
@@ -46,74 +50,118 @@ class SidebarComponent extends ConsumerWidget {
                     letterSpacing: -1.0,
                   ),
                 ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 8),
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Colors.indigo.withOpacity(0.2), // Indigo accent
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        "BETA",
-                        style: GoogleFonts.inter(
-                          fontSize: 10,
-                          color: Colors.indigo[300], // Indigo informational
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              // Navigation Items
-              _buildNavItem(context, ref, CupertinoIcons.rectangle_grid_2x2_fill, "Dashboard", DashboardTab.dashboard, currentTab),
-              _buildNavItem(context, ref, CupertinoIcons.compass, "Explore", DashboardTab.explore, currentTab),
-              _buildNavItem(context, ref, CupertinoIcons.layers_alt, "Library", DashboardTab.library, currentTab),
-
-              const Spacer(),
-
-              // User Profile at bottom
-              GestureDetector(
-                onTap: () => ref.read(sidebarSelectionProvider.notifier).state = DashboardTab.settings,
-                child: Container(
-                  padding: const EdgeInsets.all(16),
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
-                    border: const Border(top: BorderSide(color: Color(0xFF27272a))), // zinc-800
-                    color: currentTab == DashboardTab.settings ? const Color(0xFF18181b) : Colors.transparent, // zinc-900
+                    color: Colors.indigo.withOpacity(0.2), // Indigo accent
+                    borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 16,
-                        backgroundColor: Colors.indigo,
-                        child: Text("AI", style: TextStyle(color: Colors.white, fontSize: 12)),
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        "Pro User",
-                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600),
-                      ),
-                      const Spacer(),
-                      Icon(
-                        Icons.settings,
-                        size: 18,
-                        color: currentTab == DashboardTab.settings ? Colors.white : const Color(0xFF71717a), // zinc-400
-                      ),
-                    ],
+                  child: Text(
+                    "BETA",
+                    style: GoogleFonts.inter(
+                      fontSize: 10,
+                      color: Colors.indigo[300], // Indigo informational
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
+
+          const SizedBox(height: 8),
+
+          // Navigation Items
+          _buildNavItem(
+            context,
+            ref,
+            CupertinoIcons.rectangle_grid_2x2_fill,
+            "Dashboard",
+            DashboardTab.dashboard,
+            currentTab,
+          ),
+          _buildNavItem(
+            context,
+            ref,
+            CupertinoIcons.compass,
+            "Explore",
+            DashboardTab.explore,
+            currentTab,
+          ),
+          _buildNavItem(
+            context,
+            ref,
+            CupertinoIcons.layers_alt,
+            "Library",
+            DashboardTab.library,
+            currentTab,
+          ),
+
+          const Spacer(),
+
+          // User Profile at bottom
+          GestureDetector(
+            onTap: () => ref.read(sidebarSelectionProvider.notifier).state =
+                DashboardTab.settings,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                border: const Border(
+                  top: BorderSide(color: Color(0xFF27272a)),
+                ), // zinc-800
+                color: currentTab == DashboardTab.settings
+                    ? const Color(0xFF18181b)
+                    : Colors.transparent, // zinc-900
+              ),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 16,
+                    backgroundColor: Colors.indigo,
+                    child: Text(
+                      "AI",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    "Pro User",
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+                  Icon(
+                    Icons.settings,
+                    size: 18,
+                    color: currentTab == DashboardTab.settings
+                        ? Colors.white
+                        : const Color(0xFF71717a), // zinc-400
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildNavItem(BuildContext context, WidgetRef ref, IconData icon, String label, DashboardTab tab, DashboardTab currentTab) {
+  Widget _buildNavItem(
+    BuildContext context,
+    WidgetRef ref,
+    IconData icon,
+    String label,
+    DashboardTab tab,
+    DashboardTab currentTab,
+  ) {
     final isActive = tab == currentTab;
-    
+
     // Animated Container for smooth background transition
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500), // Slower, premium feel
@@ -121,27 +169,29 @@ class SidebarComponent extends ConsumerWidget {
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         // Gradient Highlight for active tab
-        gradient: isActive 
-          ? LinearGradient(
-              colors: [
-                Colors.indigo.withOpacity(0.15),
-                Colors.indigo.withOpacity(0.01)
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight
-            )
-          : null,
+        gradient: isActive
+            ? LinearGradient(
+                colors: [
+                  Colors.indigo.withOpacity(0.15),
+                  Colors.indigo.withOpacity(0.01),
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              )
+            : null,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isActive ? Colors.indigo.withOpacity(0.2) : Colors.transparent
+          color: isActive ? Colors.indigo.withOpacity(0.2) : Colors.transparent,
         ),
-        boxShadow: isActive ? [
-           BoxShadow(
-             color: Colors.indigoAccent.withOpacity(0.05),
-             blurRadius: 10,
-             offset: const Offset(0, 4)
-           )
-        ] : []
+        boxShadow: isActive
+            ? [
+                BoxShadow(
+                  color: Colors.indigoAccent.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ]
+            : [],
       ),
       child: Material(
         color: Colors.transparent,
@@ -151,7 +201,10 @@ class SidebarComponent extends ConsumerWidget {
             ref.read(sidebarSelectionProvider.notifier).state = tab;
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14), // Slightly taller for click area
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 14,
+            ), // Slightly taller for click area
             child: Row(
               children: [
                 // Animated Icon with Color transition
@@ -160,11 +213,13 @@ class SidebarComponent extends ConsumerWidget {
                   child: Icon(
                     icon,
                     size: 20,
-                    color: isActive ? Colors.indigoAccent : const Color(0xFF71717a),
+                    color: isActive
+                        ? Colors.indigoAccent
+                        : const Color(0xFF71717a),
                   ),
                 ),
                 const SizedBox(width: 12),
-                
+
                 // Text with standard clean font
                 Expanded(
                   child: AnimatedDefaultTextStyle(
@@ -177,20 +232,26 @@ class SidebarComponent extends ConsumerWidget {
                     child: Text(label),
                   ),
                 ),
-                
+
                 // Active State Indicator (Glowing Dot or Arrow)
                 if (isActive)
                   Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: Colors.indigoAccent,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(color: Colors.indigoAccent.withOpacity(0.8), blurRadius: 8) // Stronger glow
-                      ]
-                    ),
-                  ).animate().fadeIn(duration: 600.ms).scale(duration: 400.ms, curve: Curves.easeOutBack)
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.indigoAccent.withOpacity(0.8),
+                              blurRadius: 8,
+                            ), // Stronger glow
+                          ],
+                        ),
+                      )
+                      .animate()
+                      .fadeIn(duration: 600.ms)
+                      .scale(duration: 400.ms, curve: Curves.easeOutBack),
               ],
             ),
           ),

@@ -9,11 +9,22 @@ class MockCryptoPortfolio extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF09090b),
       appBar: AppBar(
-        title: Text("Portfolio", style: GoogleFonts.spaceGrotesk(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(
+          "Portfolio",
+          style: GoogleFonts.spaceGrotesk(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
-        actions: [IconButton(icon: const Icon(Icons.pie_chart_outline, color: Colors.white), onPressed: () {})],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.pie_chart_outline, color: Colors.white),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -22,25 +33,39 @@ class MockCryptoPortfolio extends StatelessWidget {
             children: [
               // Donut Chart Placeholder
               Container(
-                height: 200, width: 200,
+                height: 200,
+                width: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.indigoAccent, width: 20),
                 ),
                 child: Center(
                   child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Text("Total", style: GoogleFonts.inter(color: Colors.grey, fontSize: 12)),
-                       Text("\$12.4k", style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-                     ],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Total",
+                        style: GoogleFonts.inter(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        "\$12.4k",
+                        style: GoogleFonts.inter(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
               const SizedBox(height: 30),
-              
+
               // Allocation List
-               Expanded(
+              Expanded(
                 child: ListView(
                   children: [
                     _buildAllocationTile("Bitcoin", "45%", Colors.orange),
@@ -70,7 +95,13 @@ class MockCryptoPortfolio extends StatelessWidget {
         children: [
           CircleAvatar(backgroundColor: color, radius: 6),
           const SizedBox(width: 12),
-          Text(name, style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text(
+            name,
+            style: GoogleFonts.inter(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const Spacer(),
           Text(percent, style: GoogleFonts.inter(color: Colors.white70)),
         ],

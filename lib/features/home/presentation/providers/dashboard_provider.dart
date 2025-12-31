@@ -9,7 +9,9 @@ final generationRepositoryProvider = Provider<GenerationRepository>((ref) {
 });
 
 // Future Provider for fetching history
-final recentGenerationsProvider = FutureProvider<List<GenerationItem>>((ref) async {
+final recentGenerationsProvider = FutureProvider<List<GenerationItem>>((
+  ref,
+) async {
   final repo = ref.watch(generationRepositoryProvider);
   return repo.getRecentGenerations();
 });
@@ -21,13 +23,17 @@ final selectedPlatformProvider = StateProvider<String>((ref) => 'App');
 final promptInputProvider = StateProvider<String>((ref) => '');
 
 // State for the current generation being viewed/created
-final currentGenerationContentProvider = StateProvider<Map<String, dynamic>?>((ref) => null);
+final currentGenerationContentProvider = StateProvider<Map<String, dynamic>?>(
+  (ref) => null,
+);
 
 // ENUMS
 enum DashboardTab { dashboard, explore, library, settings }
 
 // STATE PROVIDERS
-final sidebarSelectionProvider = StateProvider<DashboardTab>((ref) => DashboardTab.dashboard);
+final sidebarSelectionProvider = StateProvider<DashboardTab>(
+  (ref) => DashboardTab.dashboard,
+);
 
 final isDesktopProvider = StateProvider<bool>((ref) => true);
 
@@ -38,10 +44,10 @@ final isGeneratingProvider = StateProvider<bool>((ref) => false);
 Future<void> startGeneration(WidgetRef ref, String prompt) async {
   ref.read(isGeneratingProvider.notifier).state = true;
   ref.read(currentGenerationContentProvider.notifier).state = null;
-  
+
   final platform = ref.read(selectedPlatformProvider);
-  final service = GeminiService(); 
-  
+  final service = GeminiService();
+
   try {
     // Call Real Gemini API
     final result = await service.generateUiSpecs(prompt, platform);
