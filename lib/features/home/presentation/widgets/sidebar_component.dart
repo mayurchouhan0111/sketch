@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../providers/dashboard_provider.dart';
-import 'package:lottie/lottie.dart';
 
 class SidebarComponent extends ConsumerWidget {
   const SidebarComponent({super.key});
@@ -20,7 +19,7 @@ class SidebarComponent extends ConsumerWidget {
         color: Colors.black.withOpacity(0.3), // Glassmorphic Transparent
         border: Border(
           right: BorderSide(
-            color: Color(0xFF27272a).withOpacity(0.5),
+            color: const Color(0xFF27272a).withOpacity(0.5),
             width: 1,
           ),
         ),

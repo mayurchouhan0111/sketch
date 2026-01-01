@@ -119,7 +119,7 @@ class SettingsScreen extends ConsumerWidget {
                   trailing: Switch(
                     value: true,
                     onChanged: (v) {},
-                    activeColor: Colors.indigoAccent,
+                    activeThumbColor: Colors.indigoAccent,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -130,7 +130,7 @@ class SettingsScreen extends ConsumerWidget {
                   trailing: Switch(
                     value: true,
                     onChanged: (v) {},
-                    activeColor: Colors.indigoAccent,
+                    activeThumbColor: Colors.indigoAccent,
                   ),
                 ),
 

@@ -64,27 +64,27 @@ class MockSocialFeed extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.favorite_border, color: Colors.white),
-              const SizedBox(width: 16),
-              const Icon(Icons.chat_bubble_outline, color: Colors.white),
-              const SizedBox(width: 16),
-              const Icon(Icons.send_outlined, color: Colors.white),
-              const Spacer(),
-              const Icon(Icons.bookmark_border, color: Colors.white),
+              Icon(Icons.favorite_border, color: Colors.white),
+              SizedBox(width: 16),
+              Icon(Icons.chat_bubble_outline, color: Colors.white),
+              SizedBox(width: 16),
+              Icon(Icons.send_outlined, color: Colors.white),
+              Spacer(),
+              Icon(Icons.bookmark_border, color: Colors.white),
             ],
           ),
           const SizedBox(height: 8),
           RichText(
             text: TextSpan(
               style: GoogleFonts.inter(color: Colors.white),
-              children: [
-                const TextSpan(
+              children: const [
+                TextSpan(
                   text: "shadcn ",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                const TextSpan(
+                TextSpan(
                   text:
                       "Beautifully designed components that you can copy and paste into your apps.",
                 ),

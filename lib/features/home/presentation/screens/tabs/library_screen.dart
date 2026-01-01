@@ -408,7 +408,7 @@ class LibraryScreen extends StatelessWidget {
                           Container(
                             width: 6,
                             height: 6,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.greenAccent,
                               shape: BoxShape.circle,
                             ),

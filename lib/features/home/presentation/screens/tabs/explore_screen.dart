@@ -231,7 +231,7 @@ class ExploreScreen extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Icon(Icons.more_horiz, color: Colors.white24, size: 20),
+                    const Icon(Icons.more_horiz, color: Colors.white24, size: 20),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -266,7 +266,7 @@ class ExploreScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Icon(
+                    const Icon(
                       Icons.favorite_border,
                       size: 14,
                       color: Colors.white38,

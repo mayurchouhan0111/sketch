@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:google_generative_ai/google_generative_ai.dart';
 
 class GeminiService {
   // Using Mock Data specifically requested by user to ensure UI stability
